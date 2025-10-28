@@ -18,21 +18,37 @@ int main() {
 
   // sequencia de acessos com alta localidade temporal ("duas fases") (favorece
   // LRU)
-  char seq1[] = {'A', 'B', 'C', 'D', 'E', 'F', 'A', 'C', 'B', 'F', 'D',
-                 'E', 'B', 'A', 'F', 'E', 'C', 'D', 'A', 'F', 'B', 'E',
-                 'G', 'H', 'I', 'J', 'K', 'L', 'G', 'I', 'H', 'L', 'J',
-                 'K', 'H', 'G', 'L', 'K', 'I', 'J', 'G', 'L', 'H', 'K'};
+  char seq1[] = {
+      'A', 'B', 'C', 'D', 'E', 'F', 'A', 'C', 'B', 'F', 'D', 'E', 'B', 'A', 'F',
+      'E', 'C', 'D', 'A', 'F', 'B', 'E', 'C', 'D', 'A', 'F', 'B', 'E', 'D', 'A',
+      'F', 'C', 'E', 'B', 'F', 'A', 'E', 'C', 'B', 'D', 'F', 'A', 'C', 'E', 'G',
+      'H', 'I', 'J', 'K', 'L', 'G', 'I', 'H', 'L', 'J', 'K', 'H', 'G', 'L', 'K',
+      'I', 'J', 'G', 'L', 'H', 'K', 'I', 'J', 'G', 'K', 'H', 'L', 'J', 'G', 'L',
+      'I', 'K', 'H', 'G', 'J', 'L', 'H', 'I', 'K', 'L', 'G', 'J', 'H'};
   int tamSeq1 = sizeof(seq1);
 
   // sequencia com acessos repetitivos a um subconjunto dos dados (favorece LFU)
-  char seq2[] = {'A', 'B', 'C', 'D', 'E', 'F', 'A', 'B', 'C', 'D', 'A',
-                 'B', 'C', 'D', 'A', 'B', 'C', 'D', 'A', 'C', 'B', 'D',
-                 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'A',
-                 'B', 'C', 'D', 'A', 'B', 'C', 'D', 'A', 'B'};
+  char seq2[] = {
+      'A', 'B', 'C', 'D', 'E', 'F', 'A', 'B', 'C', 'D', 'A', 'B', 'C', 'D', 'A',
+      'B', 'C', 'D', 'A', 'A', 'B', 'B', 'C', 'C', 'D', 'D', 'G', 'H', 'I', 'J',
+      'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y',
+      'Z', 'A', 'B', 'C', 'D', 'A', 'B', 'C', 'D', 'A', 'B', 'C', 'G', 'H', 'I',
+      'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X',
+      'Y', 'Z', 'A', 'B', 'C', 'D', 'A', 'B', 'C', 'D', 'D', 'C', 'B'};
+
   int tamSeq2 = sizeof(seq2);
 
   // caso híbrido
-  char seq3[] = {'a'};
+
+  char seq3[] = {
+      'A','B','C','A','B','C','D','A','B','C','E','F','A','B','C','D',
+      'X','Y','Z','X','X','Y','X','X','Z','X','Y','X','X','Z','X','X',
+      'M','N','O','M','P','N','O','Q','M','N','O','P','Q','R','M','N',
+      'A','B','C','A','D','E','A','B','C','D','E','F','A','B','C','D',
+      'X','Y','Z','X','Y','Z','X','X','Y','Z','X','Y','Z','M','N','O',
+      'P','Q','R','S','T','U','V','W'
+  };
+
   int tamSeq3 = sizeof(seq3);
 
   printf("Sequência de acessos 1:\n");
@@ -45,10 +61,10 @@ int main() {
   implementa_LFU(cache, seq2, tamSeq2);
   printf("\n");
 
-  /*printf("Sequência de acessos 3:");
+  printf("Sequência de acessos 3:\n");
   implementa_LRU(cache, seq3, tamSeq3);
   implementa_LFU(cache, seq3, tamSeq3);
-  printf("\n");*/
+  printf("\n");
 
   return 0;
 }
